@@ -1,6 +1,15 @@
 //es similar a un constructor en POO
 function MediaPlayer(config) {
     this.media = config.el
+    this.plugins = config.plugins || []
+
+    this._initPlugins()
+}
+
+MediaPlayer.prototype._initPlugins = function (){
+    this.plugins.forEach(plugin => {
+        plugin.run(this)
+    });
 }
 
 //es como el metodo play de la clase MediaPlayer
