@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Abre la consola</h1>
+  <ul>
+    <li><button class="call-to-action">Aprender</button></li>
+    <li><button class="call-to-action">Aprender más</button></li>
+    <li><button class="call-to-action">¡Nunca pares de aprender!</button></li>
+  </ul>
+  <script>
+    function saludar(){
+      console.log(`Hola. Soy ${this.name} ${this.last_name}`)
+    }
+    
+    function caminar(metros, direccion){
+      console.log(`${this.name} camina ${metros} hacia ${direccion}`)
+    }
+
+    const jesus = {
+      name: 'Jesus',
+      last_name: 'Garcia'
+    }
+    
+    
+    /*-----CALL------*/
+    saludar.call(jesus)
+    caminar.call(jesus, 80, 'norte')
+
+    /*-----APPLY------*/
+    caminar.apply(jesus, [100, 'sur'])
+
+    /*-----BIND------*/
+    const daniel = {name: 'Daniel', last_name:'Perez'}
+    saludar.bind(daniel) //NO IMPRIME NADA EN LA CONSOLA PORQUE NO SE EJECUTA
+    const danielSaluda = saludar.bind(daniel)
+    danielSaluda()
+
+    const danielCamina = caminar.bind(daniel)
+    danielCamina(1000, 'este')
+
+    //guardar parcialmente algunos argumentos
+    const danielCamina1 = caminar.bind(daniel, 2000)
+    danielCamina1('Noreste')
+
+    //NodeList != Array
+    const buttons = document.getElementsByClassName('call-to-action')
+
+    /*No fncionara pues buttons es un Nodelist y no un array
+    buttons.forEach(button => {
+      button.onclick = () => {
+        alert('Nunca pares de aprender')
+      }
+    })*/
+
+    //PODEMOS HACER USO DEL CALL PARA CAMBIAR EL THIS DE LA FUNCION 
+    Array.prototype.forEach.call(buttons, button => {
+      button.onclick = () => alert('Nunca pares de aprender!')
+    })
+  </script>
+</body>
+</html>
