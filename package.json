@@ -4,12 +4,16 @@
   "description": "Es un proyecto del curso profesional de javascript",
   "main": "index.js",
   "scripts": {
-    "start": "live-server",
+    "start": "parcel index.html exercises/**/*.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jesus Garcia",
   "license": "MIT",
   "devDependencies": {
-    "live-server": "^1.2.1"
-  }
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^4.0.2"
+  },
+  "browserlist": [
+    "last 1 Chrome version"
+  ]
 }
